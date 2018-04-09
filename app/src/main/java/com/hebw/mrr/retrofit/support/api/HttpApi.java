@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.hebw.mrr.BuildConfig;
 import com.hebw.mrr.retrofit.bean.WeatherBean;
+import com.hebw.mrr.retrofit.support.converter.DecodeConverterFactory;
 import com.hebw.mrr.retrofit.support.interceptor.HttpLoggingInterceptor;
 import com.hebw.mrr.retrofit.support.interceptor.RetryIntercepter;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -36,6 +37,7 @@ public class HttpApi {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://www.weather.com.cn/data/sk/")
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(DecodeConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(builder.build())
                 .build();
